@@ -42,7 +42,10 @@ def help():
         __file__), "-?         Display help info")
     print("    python ", os.path.basename(
         __file__), "-png       Compress \"png\" files")
+
+        
     # SCRIPT
+
 
 if len(sys.argv) == 1:
     help()
@@ -78,15 +81,16 @@ if rom in romArgs:
 if rom in renameArgs:
     for filename in os.listdir('.'):
         if filename.endswith('.png'):
-    	    if filename.find("_") > 0:
-    	    	newfilename = filename.replace("_", "&")
-    	    	os.rename(filename, newfilename)
+            if filename.find("_") > 0:
+                newfilename = filename.replace("_", "&")
+                os.rename(filename, newfilename)
 
 if rom in pngArgs:
-		for coverart in os.listdir('.'):
-			if coverart.endswith('.png'):
-				img = Image.open(coverart)
-				w,h = img.size
-				if not w == 128 and not h == 115:
-					imResize = img.resize((128, 115), Image.ANTIALIAS)
-					imResize.save(coverart, format="PNG", compress_level=5, optimize=True)
+    for coverart in os.listdir('.'):
+        if coverart.endswith('.png'):
+            img = Image.open(coverart)
+            w, h = img.size
+            if not w == 128 and not h == 115:
+                imResize = img.resize((128, 115), Image.ANTIALIAS)
+                imResize.save(coverart, format="PNG",
+                              compress_level=5, optimize=True)
