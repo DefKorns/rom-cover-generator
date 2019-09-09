@@ -32,7 +32,7 @@ def valid_arg(arg, multilist):
 def help():
     print("\nUsage: \n    python ", os.path.basename(
         __file__), "files | [options]")
-    print("\nFiles: \n    Rom files of type: \".nes\", \".snes\", \".gb\", \".gbc\", \".sms\", \".gen\", \".gg\"")
+    print("\nFiles: \n    Rom files of type: \".nes\", \".sfc\", \".smc\", \".gb\", \".gbc\", \".sms\", \".gen\", \".gg\"")
     print("\nOptions: \n    -?, -h, -help			This information screen")
     print("    .md                                Convert Mega Drive roms \".md\" to nds compatible roms \".gen\"")
     print("    -png                                Optimize png files")
@@ -43,7 +43,6 @@ def help():
     print("    python ", os.path.basename(
         __file__), "-png       Compress \"png\" files")
 
-        #alias python3='winpty /c/Users/marco.coelho/AppData/Local/Programs/Python/Python37-32/python.exe'
     # SCRIPT
 
 
@@ -53,10 +52,11 @@ if len(sys.argv) == 1:
 
 for rom in sys.argv:
     helpArgs = ['help', '-h', '-?']
-    romArgs = ['.snes', '.gbc', '.nes', '.gb', '.sms', '.gen', '.gg', '.md']
+    romArgs = ['.sfc', '.smc', '.gbc', '.nes',
+               '.gb', '.sms', '.gen', '.gg', '.md']
     pngArgs = ['png', 'boxart']
-    renameArgs = ['rename', '-r']
-    arg_list = [helpArgs, romArgs, pngArgs, renameArgs]
+renameArgs = ['rename', '-r']
+arg_list = [helpArgs, romArgs, pngArgs, renameArgs]
 
 if not valid_arg(rom, arg_list):
     help()
@@ -69,6 +69,7 @@ if rom in romArgs:
     for file in os.listdir("."):
         if file.endswith(rom):
             rom_title, rom_extension = os.path.splitext(file)
+
             if (rom_extension == '.md'):
                 rom_extension = '.gen'
                 rename(file, rom_title + rom_extension)
