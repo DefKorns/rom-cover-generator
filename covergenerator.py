@@ -43,7 +43,7 @@ def help():
     print("    python ", os.path.basename(
         __file__), "-png       Compress \"png\" files")
 
-        
+        #alias python3='winpty /c/Users/marco.coelho/AppData/Local/Programs/Python/Python37-32/python.exe'
     # SCRIPT
 
 
@@ -55,8 +55,8 @@ for rom in sys.argv:
     helpArgs = ['help', '-h', '-?']
     romArgs = ['.snes', '.gbc', '.nes', '.gb', '.sms', '.gen', '.gg', '.md']
     pngArgs = ['png', 'boxart']
-renameArgs = ['rename', '-r']
-arg_list = [helpArgs, romArgs, pngArgs, renameArgs]
+    renameArgs = ['rename', '-r']
+    arg_list = [helpArgs, romArgs, pngArgs, renameArgs]
 
 if not valid_arg(rom, arg_list):
     help()
@@ -69,7 +69,6 @@ if rom in romArgs:
     for file in os.listdir("."):
         if file.endswith(rom):
             rom_title, rom_extension = os.path.splitext(file)
-
             if (rom_extension == '.md'):
                 rom_extension = '.gen'
                 rename(file, rom_title + rom_extension)
